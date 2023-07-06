@@ -1,0 +1,18 @@
+.nav {
+    z-index: 50;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.51);
+    backdrop-filter: blur(20px);
+    position: fixed;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00BF98;
+}
