@@ -6,6 +6,7 @@ import StartPage from "./pages/StartPage/StartPage"
 import Dashboard from "./pages/Dashboard/Dashboard"
 import SignIn from "./pages/Auth/SignIn/SignIn"
 import SignUp from "./pages/Auth/SignUp/SignUp"
+import Create from "./pages/Create/Create"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route element={<Dashboard />} path={'/dashboard'} />
           <Route element={<SignIn />} path={'/in'} />
           <Route element={<SignUp />} path={'/up'} />
+          <Route element={<Create />} path={'/create'} />
       </Routes>
     </Fragment>
   )

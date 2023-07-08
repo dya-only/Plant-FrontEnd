@@ -1,6 +1,7 @@
 import style from './SignUp.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import {Link} from "react-router-dom";
 
 const SignUp = () => {
     return (
@@ -18,6 +19,7 @@ const SignUp = () => {
                     <FontAwesomeIcon className={style.icon} icon={faLock} />
                     <input type="password" className={style.input} placeholder={'비밀번호'} />
                 </div>
+                <Link className={style.move} to={'/in'}>계정이 이미 있으신가요?</Link>
             </div>
 
             <button className={style.btn} onClick={() => window.location.href='/in'}>회원가입</button>

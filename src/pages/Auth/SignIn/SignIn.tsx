@@ -1,6 +1,7 @@
+import {Link} from "react-router-dom"
 import style from './SignIn.module.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faLock, faUser} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faLock, faUser} from "@fortawesome/free-solid-svg-icons"
 
 const SignIn = () => {
     return (
@@ -18,6 +19,7 @@ const SignIn = () => {
                     <FontAwesomeIcon className={style.icon} icon={faLock} />
                     <input type="password" className={style.input} placeholder={'비밀번호'} />
                 </div>
+                <Link className={style.move} to={'/up'}>계정이 없으신가요?</Link>
             </div>
 
             <button className={style.btn} onClick={() => window.location.href='/dashboard'}>로그인</button>
