@@ -22,7 +22,7 @@
 }
 
 .input {
-    width: 160px;
+    width: 180px;
     height: 40px;
     margin-left: -45px;
     padding-left: 40px;
@@ -70,6 +70,7 @@
 }
 
 .move {
-    width: 200px;
+    text-decoration: none;
+    width: 220px;
     color: #00BF98;
 }
