@@ -1,30 +1,55 @@
-import {Link} from "react-router-dom"
 import style from './SignIn.module.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faLock, faUser} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser, faLock} from '@fortawesome/free-solid-svg-icons'
+import {Link, useNavigate} from "react-router-dom"
+import axios from 'axios'
+import {useEffect, useState} from "react";
 
-const SignIn = () => {
-    return (
-        <div className={style.contain}>
-            <div></div>
+export default function In() {
+  const navigate = useNavigate()
+  const [name, setName] = useState('')
+  const [passwd, setPasswd] = useState('')
 
-            <div className={style.main}>
-                <div className={style.title}>로그인</div>
+  const onSignIn = async () => {
+    axios.post('http://localhost:4321/api/user', {name, passwd}, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      const resp = res.data
 
-                <div className={style.side}>
-                    <FontAwesomeIcon className={style.icon} icon={faUser} />
-                    <input type="text" className={style.input} placeholder={'아이디'} />
-                </div>
-                <div className={style.side}>
-                    <FontAwesomeIcon className={style.icon} icon={faLock} />
-                    <input type="password" className={style.input} placeholder={'비밀번호'} />
-                </div>
-                <Link className={style.move} to={'/up'}>계정이 없으신가요?</Link>
-            </div>
+      console.log(resp)
+      if (resp.status === 200) {
+        sessionStorage.setItem("CLIENT_TOKEN", resp.accessToken)
+        sessionStorage.setItem("USER", resp.name)
+        navigate('/dashboard')
+      }
+    })
+  }
 
-            <button className={style.btn} onClick={() => window.location.href='/dashboard'}>로그인</button>
+  useEffect(() => {
+    if (sessionStorage.getItem('CLIENT_TOKEN')) navigate('/dashboard')
+  }, [])
+
+  return (
+    <div className={style.contain}>
+      <div></div>
+
+      <div className={style.main}>
+        <div className={style.title}>로그인</div>
+
+        <div className={style.side}>
+          <FontAwesomeIcon className={style.icon} icon={faUser}/>
+          <input type="text" className={style.input} placeholder={'아이디'} onChange={(e: any) => setName(e.target.value)}/>
         </div>
-    )
-}
+        <div className={style.side}>
+          <FontAwesomeIcon className={style.icon} icon={faLock}/>
+          <input type="password" className={style.input} placeholder={'비밀번호'} onChange={(e: any) => setPasswd(e.target.value)}/>
+        </div>
+        <Link className={style.move} to={'/up'}>계정이 없으신가요?</Link>
+      </div>
 
-export default SignIn
+      <button className={style.btn} onClick={onSignIn}>로그인</button>
+    </div>
+  )
+}

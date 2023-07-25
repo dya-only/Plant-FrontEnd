@@ -5,17 +5,18 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .create {
-    width: 120px;
-    height: 120px;
-    border-radius: 30px;
-    border: 2px solid #00BF98;
-    background: white;
-    margin-bottom: 40px;
+    width: 100vw;
+    height: 60px;
+    background: #00BF98;
+    color: white;
+    font-size: 18px;
+    outline: none;
+    border: none;
 }
 
 .plus {
@@ -24,11 +25,23 @@
     color: #00BF98;
 }
 
+.warn_contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .warn {
-    margin-bottom: 40px;
     color: #00BF98;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
+}
+
+.warn_img {
+    opacity: 50%;
+    width: 280px;
+    margin-bottom: 40px;
+
 }
 
 .modal_contain {
@@ -229,12 +242,19 @@
 .d_main {
     width: 100vw;
     height: 100vh;
-    padding-top: 80px;
+    padding-top: 100px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     overflow-y: auto;
+}
+
+.d_contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile {
@@ -244,26 +264,24 @@
     align-items: flex-start;
 }
 .profile_contain {
+    background: white;
     width: 150px;
     height: 150px;
     border-radius: 20px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.name {
-    font-size: 22px;
-    font-weight: 600;
+.item {
+    font-size: 20px;
+    font-weight: 400;
 }
 
-.d_date {
-    font-size: 16px;
-}
-
-.d_icon {
-    font-size: 18px;
+.icon {
+    margin-right: 4px;
+    font-size: 20px;
     color: #00BF98;
 }
 
@@ -273,5 +291,141 @@
     margin-right: 20px;
     object-fit: cover;
     border-radius: 20px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+    background: #F0F0F5;
+}
+
+.chart_contain {
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.graph_contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph_card {
+    width: 320px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    margin: 10px;
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+    border-radius: 20px;
+}
+
+.graph_warn {
+    margin-bottom: -40px;
+    position: absolute;
+    width: 220px;
+    color: #ff4b4b;
+}
+.graph_nice {
+    margin-bottom: -40px;
+    position: absolute;
+    width: 220px;
+    color: #25d225;
+}
+
+.graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+}
+
+.graph_text {
+    font-weight: 600;
+}
+
+.clogo {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.predict {
+    margin-top: 20px;
+    width: 320px;
+    height: 140px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grow {
+    font-size: 40px;
+    color: #00BF98;
+    margin-right: 10px;
+}
+
+.predict_text {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.colored {
+    color: #00BF98;
+}
+
+.center {
+    position: absolute;
+    margin-right: -25px;
+    opacity: 50%;
+    width: 2px;
+    height: 25px;
+    background: #00BF98;
+    z-index: 30;
+}
+.center_text {
+    color: #00BF98;
+    margin-top: -30px;
+    margin-right: -25px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.center1 {
+    position: absolute;
+    margin-right: -55px;
+    opacity: 50%;
+    width: 2px;
+    height: 25px;
+    background: #00BF98;
+    z-index: 30;
+}
+.center_text1 {
+    color: #00BF98;
+    margin-top: -30px;
+    margin-right: -55px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.center2 {
+    position: absolute;
+    margin-right: -160px;
+    opacity: 50%;
+    width: 2px;
+    height: 25px;
+    background: #00BF98;
+    z-index: 30;
+}
+.center_text2 {
+    color: #00BF98;
+    margin-top: -30px;
+    margin-right: -160px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 300;
 }

@@ -1,23 +1,19 @@
-import {Fragment} from "react"
-import {Link} from "react-router-dom";
 import style from './StartPage.module.css'
-import Environment from '../../assets/imgs/env.svg'
+import {Link} from "react-router-dom"
 
-const StartPage = () => {
-    return (
-        <Fragment>
-            <div className={style.header}>
-                <></>
+import env from '../../assets/imgs/env.svg'
 
-                <div className={style.menu}>
-                    <img className={style.mainimg} src={Environment} alt=""/>
-                    <div className={style.title}><strong className={style.colored}>플랜팅</strong>, 쉬워졌네요.</div>
-                </div>
+export default function Home() {
+  return (
+    <div className={style.header}>
+      <></>
 
-                <Link className={style.btn} to={'/up'}>심으러 가기</Link>
-            </div>
-        </Fragment>
-    )
+      <div className={style.menu}>
+        <img className={style.mainimg} src={env} alt=""/>
+        <div className={style.title}><strong className={style.colored}>플랜팅</strong>, 쉬워졌네요.</div>
+      </div>
+
+      <Link className={style.btn} to={'/up'}>심으러 가기</Link>
+    </div>
+  )
 }
-
-export default StartPage

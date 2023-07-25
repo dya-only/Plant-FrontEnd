@@ -1,0 +1,30 @@
+.chart {
+  width: 250px;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background: rgb(244, 244, 244);
+}
+
+.start {
+  font-size: 12px;
+  margin-left: 8px;
+  padding-top: 2px;
+  color: white;
+}
+
+.mid {
+  font-size: 12px;
+  margin-right: 8px;
+  padding-top: 2px;
+  color: white;
+}
+
+.end {
+  position: absolute;
+  margin-left: 220px;
+  font-size: 12px;
+  margin-top: 6px;
+  color: #282828;
+}

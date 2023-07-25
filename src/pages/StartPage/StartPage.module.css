@@ -1,20 +1,3 @@
-/*.contain {*/
-/*    width: 100vw;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    !*align-items: center;*!*/
-/*}*/
-
-/*.wave {*/
-/*    z-index: -10;*/
-/*    position: absolute;*/
-/*    width: 1000px;*/
-/*    height: 2000px;*/
-/*    background: #00BF98;*/
-/*    transform: translateY(-1500px);*/
-/*    border-radius: 2000px;*/
-/*}*/
-
 .menu {
     width: 100vw;
     height: 90vh;
