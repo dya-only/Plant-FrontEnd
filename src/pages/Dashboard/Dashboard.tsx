@@ -1,6 +1,7 @@
 import {Fragment, useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import style from './Dashboard.module.css'
+import axios from "axios"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
   faClose,
@@ -20,7 +21,6 @@ import Navigator from "../../components/Navi/Navi"
 
 import eco from '../../assets/imgs/eco.svg'
 import plant from '../../assets/imgs/plant.png'
-import axios from "axios";
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -41,36 +41,36 @@ export default function Dashboard() {
     //   })
   }
 
-  const getPlantData = async () => {
-    axios.get('http://3.39.224.161:1234/upload_sensor_data')
-      .then(resp => {
-        const predict = resp.data[0].predicted_days
-        console.log(predict)
-
-        if (type === '허브')
-          setPredictDays(predict.Herb)
-        else if (type === '딸기')
-          setPredictDays(predict.StrawBerry)
-        else if (type === '토마토')
-          setPredictDays(predict.Tomato)
-        else if (type === '상추')
-          setPredictDays(predict.Lettuce)
-        else if (type === '바질')
-          setPredictDays(predict.Basil)
-        else if (type === '샐러리')
-          setPredictDays(predict.Celery)
-        else
-          setPredictDays(predict.Kale)
-      })
-  }
 
   useEffect(() => {
+    const getPlantData = async () => {
+      axios.get('http://3.39.224.161:1234/upload_sensor_data')
+        .then(resp => {
+          const predict = resp.data[0].predicted_days
+          console.log(predict)
+
+          if (type === '허브')
+            setPredictDays(predict.Herb)
+          else if (type === '딸기')
+            setPredictDays(predict.StrawBerry)
+          else if (type === '토마토')
+            setPredictDays(predict.Tomato)
+          else if (type === '상추')
+            setPredictDays(predict.Lettuce)
+          else if (type === '바질')
+            setPredictDays(predict.Basil)
+          else if (type === '샐러리')
+            setPredictDays(predict.Celery)
+          else
+            setPredictDays(predict.Kale)
+        })
+    }
     if (!sessionStorage.getItem('CLIENT_TOKEN')) {
       navigate('/in')
     }
 
     getPlantData()
-  }, [])
+  }, [navigate, type])
 
   return (
     <Fragment>

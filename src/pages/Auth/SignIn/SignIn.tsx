@@ -11,7 +11,7 @@ export default function In() {
   const [passwd, setPasswd] = useState('')
 
   const onSignIn = async () => {
-    axios.post('http://localhost:4321/api/user', {name, passwd}, {
+    axios.post('http://13.125.243.232:4321/api/user', {name, passwd}, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -29,7 +29,7 @@ export default function In() {
 
   useEffect(() => {
     if (sessionStorage.getItem('CLIENT_TOKEN')) navigate('/dashboard')
-  }, [])
+  }, [navigate])
 
   return (
     <div className={style.contain}>

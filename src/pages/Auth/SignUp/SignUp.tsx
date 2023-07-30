@@ -12,7 +12,7 @@ export default function Up() {
   const [toggle, setToggle] = useState(false)
 
   const onSignUp = async () => {
-    axios.post('http://localhost:4321/api/user/create', {name, passwd}, {
+    axios.post('http://13.125.243.232:4321/api/user/create', {name, passwd}, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -28,7 +28,7 @@ export default function Up() {
 
   useEffect(() => {
     if (sessionStorage.getItem('CLIENT_TOKEN')) navigate('/dashboard')
-  }, [])
+  }, [navigate])
 
   return (
     <Fragment>
