@@ -45,7 +45,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const getPlantData = async () => {
-      axios.get('//3.39.224.161:1234/upload_sensor_data')
+      axios.get('/upload_sensor_data')
         .then(resp => {
           const predict = resp.data[0].predicted_days
           console.log(predict)
