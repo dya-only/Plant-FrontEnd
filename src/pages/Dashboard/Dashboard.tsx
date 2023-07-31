@@ -29,6 +29,7 @@ export default function Dashboard() {
   const [status, setStatus] = useState(0)
   const [isExist, setIsExist] = useState(false)
   const [predictDays, setPredictDays] = useState(0)
+  const [date, setDate] = useState<Date>()
 
   const getStart = async () => {
     setModal(false)
@@ -44,7 +45,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const getPlantData = async () => {
-      axios.get('http://3.39.224.161:1234/upload_sensor_data')
+      axios.get('//3.39.224.161:1234/upload_sensor_data')
         .then(resp => {
           const predict = resp.data[0].predicted_days
           console.log(predict)
@@ -69,7 +70,7 @@ export default function Dashboard() {
       navigate('/in')
     }
 
-    getPlantData()
+    // getPlantData()
   }, [navigate, type])
 
   return (
@@ -111,7 +112,7 @@ export default function Dashboard() {
               </div>
 
               <div className={style.sub_h}>키우기 시작 날짜</div>
-              <input type="date" className={style.date}/>
+              <input type="date" className={style.date} onChange={(e: any) => setDate(e.target.value)}/>
 
               <div className={style.sub_h}>현재 성장 상태</div>
               <div className={style.btn_contain}>
@@ -126,7 +127,7 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <button className={style.btn} onClick={getStart}>시작하기</button>
+              <button className={style.startbtn} onClick={getStart}>시작하기</button>
             </div>
           </div>
         </div>
@@ -151,8 +152,9 @@ export default function Dashboard() {
                 <div className={style.item}><span><FontAwesomeIcon className={style.icon} icon={faSeedling}/></span>
                   { type === '허브' ? '허브' : type === '딸기' ? '딸기' : type === '토마토' ? '토마토' : type === '상추' ? '상추' : type === '바질' ? '바질' : type === '샐러리' ? '샐러리' : type === '케일' ? '케일' : '' }
                 </div>
-                <div className={style.item}><span><FontAwesomeIcon className={style.icon}
-                                                                   icon={faCakeCandles}/></span> 26일
+                <div className={style.dateitem}>
+                  <FontAwesomeIcon className={style.icon} icon={faCakeCandles} />
+                  <p className={style.birth}>{ date?.toString() }</p>
                 </div>
               </div>
             </div>

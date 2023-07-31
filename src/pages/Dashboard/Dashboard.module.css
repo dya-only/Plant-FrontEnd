@@ -103,7 +103,7 @@
 }
 .sub_h {
     margin-left: 50px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 12px;
     width: 300px;
     color: #00BF98;
@@ -187,7 +187,7 @@
 .date {
     border: 1px solid #00BF98;
     border-radius: 8px;
-    padding: 10px;
+    padding: 10px 10px 25px;
     margin-left: -90px;
 }
 
@@ -199,6 +199,18 @@
     margin-top: 60px;
     width: 90vw;
     height: 80px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #00BF98;
+    color: white;
+}
+
+.startbtn {
+    margin-top: 100px;
+    width: 90vw;
+    height: 40px;
     border: none;
     border-radius: 10px;
     font-size: 16px;
@@ -428,4 +440,15 @@
     position: absolute;
     font-size: 14px;
     font-weight: 300;
+}
+
+.birth {
+    font-size: 13px;
+}
+
+.dateitem {
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
 }
