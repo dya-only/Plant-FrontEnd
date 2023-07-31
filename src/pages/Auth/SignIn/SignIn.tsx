@@ -11,7 +11,7 @@ export default function In() {
   const [passwd, setPasswd] = useState('')
 
   const onSignIn = async () => {
-    axios.post('https://ec2-13-125-243-232.ap-northeast-2.compute.amazonaws.com:4321/api/user', {name, passwd}, {
+    axios.post('http://ec2-13-125-243-232.ap-northeast-2.compute.amazonaws.com:4321/api/user', {name, passwd}, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
