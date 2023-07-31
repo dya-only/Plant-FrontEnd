@@ -15,7 +15,8 @@ export default function Up() {
     axios.post('//ec2-13-125-243-232.ap-northeast-2.compute.amazonaws.com:4321/api/user/create', {name, passwd}, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Headers': 'Content-Type'
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin' : '*'
       }
     }).then(res => {
       const resp = res.data
