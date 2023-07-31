@@ -44,7 +44,10 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem('plant')) setIsExist(true)
+    if (sessionStorage.getItem('plant')) {
+      setIsExist(true)
+      setType(sessionStorage.getItem('plant')!)
+    }
 
     const getPlantData = async () => {
       axios.get('/upload_sensor_data', {
