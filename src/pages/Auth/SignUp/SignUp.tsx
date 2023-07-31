@@ -12,7 +12,7 @@ export default function Up() {
   const [toggle, setToggle] = useState(false)
 
   const onSignUp = async () => {
-    axios.post(' https://cors-everywhere.herokuapp.com/http://ec2-13-125-243-232.ap-northeast-2.compute.amazonaws.com:4321/api/user/create', {name, passwd}, {
+    axios.post('/api/user/create', {name, passwd}, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
