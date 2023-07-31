@@ -30,25 +30,41 @@ export default function Dashboard() {
   const [isExist, setIsExist] = useState(false)
   const [predictDays, setPredictDays] = useState(0)
   const [date, setDate] = useState<Date>()
+  const [plantState, setPlantState] = useState(0)
+  const [information, setInformation] = useState({
+    humidity: 0.0,
+    soilMoisture: 0.0,
+    temperature: 0.0
+  })
 
   const getStart = async () => {
     setModal(false)
     setIsExist(true)
-    // navigate('/dashboard')
-
-    // axios.get(`http://localhost:4321/api/plant/${sessionStorage.getItem('USER')}`)
-    //   .then(resp => {
-    //     console.log(resp)
-    //   })
+    sessionStorage.setItem('plant', type)
   }
 
-
   useEffect(() => {
+    if (sessionStorage.getItem('plant')) setIsExist(true)
+
     const getPlantData = async () => {
-      axios.get('/upload_sensor_data')
+      axios.get('/upload_sensor_data', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin' : '*'
+        }})
         .then(resp => {
-          const predict = resp.data[0].predicted_days
+          const res = resp.data[0]
+          const predict = res.predicted_days
           console.log(predict)
+
+          setPlantState(res.leaf_status)
+          setInformation({
+            humidity: res.information.humidity,
+            soilMoisture: res.information.soilMoisture,
+            temperature: res.information.temperature
+          })
+
 
           if (type === '허브')
             setPredictDays(predict.Herb)
@@ -70,7 +86,7 @@ export default function Dashboard() {
       navigate('/in')
     }
 
-    // getPlantData()
+    getPlantData()
   }, [navigate, type])
 
   return (
@@ -166,10 +182,10 @@ export default function Dashboard() {
             <div className={style.graph_contain}>
               <div className={style.graph_text}><span><FontAwesomeIcon className={style.clogo}
                                                                        icon={faTemperatureThreeQuarters}/></span></div>
-              <DegreeChart chart={20}/>
+              <DegreeChart chart={information.temperature}/>
             </div>
-            <p className={style.graph_warn}>{24 > 25 ? '주변이 좀 더워요!' : 24 < 15 ? '주변이 좀 추워요!' : null}</p>
-            <p className={style.graph_nice}>{24 > 25 ? null : 24 < 15 ? null : '현재 온도를 유지해주세요.'}</p>
+            <p className={style.graph_warn}>{information.temperature > 25 ? '주변이 좀 더워요!' : information.temperature < 15 ? '주변이 좀 추워요!' : null}</p>
+            <p className={style.graph_nice}>{information.temperature > 25 ? null : information.temperature < 15 ? null : '현재 온도를 유지해주세요.'}</p>
           </div>
 
           <div className={style.graph_card}>
@@ -178,10 +194,10 @@ export default function Dashboard() {
             <div className={style.graph_contain}>
               <div className={style.graph_text}><span><FontAwesomeIcon className={style.clogo} icon={faDroplet}/></span>
               </div>
-              <HumidityChart chart={75}/>
+              <HumidityChart chart={information.humidity}/>
             </div>
-            <p className={style.graph_warn}>{75 < 70 ? '주변이 좀 건조해요!' : 75 > 90 ? '주변이 좀 습해요!' : null}</p>
-            <p className={style.graph_nice}>{75 < 70 ? null : 75 > 90 ? null : '현재 습도를 유지해주세요.'}</p>
+            <p className={style.graph_warn}>{information.humidity < 70 ? '주변이 좀 건조해요!' : information.humidity > 90 ? '주변이 좀 습해요!' : null}</p>
+            <p className={style.graph_nice}>{information.humidity < 70 ? null : information.humidity > 90 ? null : '현재 습도를 유지해주세요.'}</p>
           </div>
 
           <div className={style.graph_card}>
@@ -190,20 +206,21 @@ export default function Dashboard() {
             <div className={style.graph_contain}>
               <div className={style.graph_text}><span><FontAwesomeIcon className={style.clogo}
                                                                        icon={faEarthAsia}/></span></div>
-              <EarthChart chart={75}/>
+              <EarthChart chart={information.soilMoisture}/>
             </div>
-            <p className={style.graph_warn}>{60 < 70 ? '흙에 물이 더 필요해요!' : 60 > 90 ? '흙에 물이 너무 많아요!' : null}</p>
-            <p className={style.graph_nice}>{60 < 70 ? null : 60 > 90 ? null : '현재를 유지해주세요.'}</p>
+            <p className={style.graph_warn}>{information.soilMoisture < 70 ? '흙에 물이 더 필요해요!' : information.soilMoisture > 90 ? '흙에 물이 너무 많아요!' : null}</p>
+            <p className={style.graph_nice}>{information.soilMoisture < 70 ? null : information.soilMoisture > 90 ? null : '현재를 유지해주세요.'}</p>
           </div>
 
           <div className={style.graph_card}>
             <div className={style.graph_contain}>
               <div className={style.graph_text}><span><FontAwesomeIcon className={style.clogo} icon={faLeaf}/></span>
               </div>
-              <LeafChart chart={87}/>
+              <LeafChart chart={plantState}/>
             </div>
-            <p className={style.graph_warn}>{87 < 70 ? '잎의 상태가 안좋아요!' : null}</p>
-            <p className={style.graph_nice}>{87 >= 70 ? '잎의 상태가 건강해요.' : null}</p>
+            <p className={style.graph_warn}>{plantState < 60 ? '식물의 상태가 안좋아요!' : null}</p>
+            <p className={style.graph_yellow}>{plantState >= 60 && plantState < 80 ? '식물의 상태가 양호해요!' : null}</p>
+            <p className={style.graph_nice}>{plantState >= 80 ? '식물의 상태가 건강해요.' : null}</p>
           </div>
 
           <div className={style.predict}>

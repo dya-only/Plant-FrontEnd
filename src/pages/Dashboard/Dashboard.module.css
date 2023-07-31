@@ -338,6 +338,12 @@
     width: 220px;
     color: #ff4b4b;
 }
+.graph_yellow {
+    margin-bottom: -40px;
+    position: absolute;
+    width: 220px;
+    color: #ffc04b;
+}
 .graph_nice {
     margin-bottom: -40px;
     position: absolute;
