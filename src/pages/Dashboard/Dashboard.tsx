@@ -64,7 +64,7 @@ export default function Dashboard() {
           setPlantState(res.leaf_status)
           setInformation({
             humidity: res.information.humidity,
-            soilMoisture: res.information.soilMoisture,
+            soilMoisture: res.information.soil_moisture,
             temperature: res.information.temperature
           })
 
